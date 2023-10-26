@@ -10,7 +10,13 @@ const navy =  '#0F3659';
 function DataEdit(){
     //현재 로그인한 유저 이메일
     const [currentUser, setCurrUser] = useState("admin@admin.com");
-
+    // 쿼리스트링 추출 
+    const searchParams = useLocation().search;
+    const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
+    const startDate = new URLSearchParams(searchParams).get('startDate');
+    const endDate = new URLSearchParams(searchParams).get('endDate');
+    console.log('수정 및 조회',{ pageOffset, startDate , endDate});
+    //const pageOffset = 0;
     //로그인한 관리자의 관리번호 받아오기
     //const {editId} = useParams();
     //관리번호
@@ -20,7 +26,7 @@ function DataEdit(){
       <Box>
         <Box >
           <div style={style.fixed}>
-            <Link to={{pathname : '/DataManage'}} style={{textDecorationLine:'none',display:'flex', alignItems:'center',}}>
+            <Link to={{pathname : '/DataManage', search: `?pageOffset=${pageOffset}&startDate=${startDate}&endDate=${endDate}`}} style={{textDecorationLine:'none',display:'flex', alignItems:'center',}}>
               <IconButton style={{color:`${navy}`, backgroundColor:'white', border:`1px solid ${navy}`, borderRadius:'10px', marginRight:'10px'}}>
                 <FaArrowLeft/>
               </IconButton>

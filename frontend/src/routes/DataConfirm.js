@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useParams,Link } from "react-router-dom";
+import { useParams, useLocation,Link } from "react-router-dom";
 import DataLoad from "../components/DataDetailPage/DetailDataController";
 import DataView from "../components/DataDetailPage/DataView";
 import { Box, Typography, Button, IconButton} from '@mui/material';
@@ -11,13 +11,18 @@ function DataConfirm(){
     //현재 로그인한 유저 이메일
     const [currentUser, setCurrUser] = useState("admin@admin.com")
     const idParam  = useParams();
-    
+    // 쿼리스트링 추출 
+    const searchParams = useLocation().search;
+    const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
+    const startDate = new URLSearchParams(searchParams).get('startDate');
+    const endDate = new URLSearchParams(searchParams).get('endDate');
+    console.log('승인 및 반려',{ pageOffset, startDate , endDate});
     return(
         <Box sx={{ display: "flex"}}>
           <Box sx={style.fixed}>
             <div style={{display:'flex', alignItems:'center', marginLeft:'10px'}}>
               {/**link 컴포넌트화하기 */}
-              <Link to={{pathname : '/DataManage'}}  style={{textDecorationLine:'none',display:'flex', alignItems:'center',}} >
+              <Link to={{pathname : '/DataManage', search: `?pageOffset=${pageOffset}&startDate=${startDate}&endDate=${endDate}`}}  style={{textDecorationLine:'none',display:'flex', alignItems:'center',}} >
                 <IconButton style={{color:`${navy}`, backgroundColor:'white', border:`1px solid ${navy}`, borderRadius:'10px', marginRight:'10px'}}>
                   <FaArrowLeft/>
                 </IconButton>

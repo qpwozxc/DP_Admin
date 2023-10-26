@@ -15,12 +15,19 @@ function DataPredict(){
     //const {editId} = useParams();
     //관리번호
      const idParam  = useParams();
+   // 쿼리스트링 추출 
+   const searchParams = useLocation().search;
+   const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
+   const startDate = new URLSearchParams(searchParams).get('startDate');
+   const endDate = new URLSearchParams(searchParams).get('endDate');
+   console.log('예측',{ pageOffset, startDate , endDate});
 
+    
     return (
       <Box sx={{ display: "flex"}}>
         <Box sx={style.fixed}>
           <div style={{display:'flex', alignItems:'center', marginLeft:'10px'}}>
-            <Link to={{pathname : '/PA'}} style={{textDecorationLine:'none',display:'flex', alignItems:'center',}} >
+            <Link to={{pathname : '/PA', search: `?pageOffset=${pageOffset}&startDate=${startDate}&endDate=${endDate}`}} style={{textDecorationLine:'none',display:'flex', alignItems:'center',}} >
               <IconButton style={{color:`${navy}`, backgroundColor:'white', border:`1px solid ${navy}`, borderRadius:'10px', marginRight:'10px'}}>
                 <FaArrowLeft/>
               </IconButton>
