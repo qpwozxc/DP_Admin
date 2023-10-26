@@ -83,13 +83,14 @@ function Home() {
             <Box
              sx={{
               width: `${(261 / 1920) * 100}vw`, // Relative width
-              height: `${(238 / 1080) * 100}vh`, // Relative height
+              height: `${(260 / 1080) * 100}vh`, // Relative height
               border: `${(1 / 1920) * 100}vw solid rgba(238, 238, 238, 0.50)`, // Relative border
               borderRadius: `${(40 / 1920) * 100}vw`, // Relative border radius
               overflow: "hidden",
               backgroundColor: "white",
               boxShadow: `${(0 / 1920) * 100}vw ${(4 / 1080) * 100}vh ${(20 / 1920) * 100}vw 0px rgba(238, 238, 238, 0.50)`, // Relative boxShadow
-            }}
+              padding: `${(20 / 1920) * 100}vw ${(20 / 1080) * 100}vh`, // Relative padding
+              }}
             
             >
               <CardActionArea onClick={() => handleCardClick(card.link)}>
