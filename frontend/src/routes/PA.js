@@ -6,6 +6,7 @@ import PADataListComp from "../components/DataListView/PADataListComp";
 import { Box, Button, } from "@mui/material";
 // import timezone
 import { TIME_ZONE } from "../config";
+import { useParams, useLocation ,Link } from "react-router-dom";
 
 const navy =  '#0F3659';
 
@@ -15,6 +16,19 @@ function PA(){
     const [startDate, setStartDate] = useState(new Date(s.getTime() + TIME_ZONE).toISOString().slice(0, -5));
     const [endDate, setEndDate] = useState(new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5));
 
+    // 쿼리스트링 추출 
+    const searchParams = useLocation().search;
+    const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
+    const queryStartDate = new URLSearchParams(searchParams).get('startDate');
+    const queryEndDate = new URLSearchParams(searchParams).get('endDate');
+      
+    useEffect(()=>{
+        if(queryStartDate && queryEndDate){
+            setStartDate(queryStartDate);
+            setEndDate(queryEndDate);
+        }
+    },[queryStartDate, queryEndDate]);
+    
     return(
         <div style={{width:'100%',paddingLeft:'30px', paddingRight:'20px'}}>
             {/**페이지 제목 Dashboard ()> 반려함) */}

@@ -5,9 +5,9 @@ import { Box,Divider, Link, Stack, Table, TableBody, TableCell, TableContainer, 
 import {FaRegTrashAlt} from "react-icons/fa";
 import DelWarningModal from "./WarningComp";
 import PropTypes from 'prop-types';
-function DataList({meatList, pageProp, offset, count, totalPages}){
-
-    // 삭제 
+function DataList({meatList, pageProp, offset, count, totalPages,startDate, endDate}){
+    console.log('check pa date', startDate, endDate)
+;    // 삭제 
     // 테이블 헤더상 선택 삭제 클릭 -> 변수명 isDelClick으로 바꾸기
     const [isDelClick, setIsDelClick] = useState(false);
 
@@ -187,9 +187,10 @@ function DataList({meatList, pageProp, offset, count, totalPages}){
                                     component={RouterLink}
                                     style={{textDecorationLine:'none',}} 
                                     to= {pageProp === 'pa' 
-                                        ?{pathname:`/dataPA/${content.id}`, search : `?pageOffset=${offset}`} 
-                                        : content.statusType === "승인" ? {pathname : `/dataView/${content.id}`, search : `?pageOffset=${offset}`}
-                                                                        :{pathname : `/DataConfirm/${content.id}`, search : `?pageOffset=${offset}`}}>
+                                        ?{pathname:`/dataPA/${content.id}`, search : `?pageOffset=${offset}&startDate=${startDate}&endDate=${endDate}`} 
+                                        : content.statusType === "승인" 
+                                            ? {pathname : `/dataView/${content.id}`, search : `?pageOffset=${offset}&startDate=${startDate}&endDate=${endDate}`}
+                                            :{pathname : `/DataConfirm/${content.id}`, search : `?pageOffset=${offset}&startDate=${startDate}&endDate=${endDate}`}}>
                                     {content.id}
                                 </Link>
                             </TableCell>

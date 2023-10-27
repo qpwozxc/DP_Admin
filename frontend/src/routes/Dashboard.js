@@ -16,6 +16,7 @@ import { Box, Button, } from "@mui/material";
 import { TIME_ZONE } from "../config";
 // import icon
 import {FaBoxOpen} from "react-icons/fa";
+import { useParams, useLocation ,Link } from "react-router-dom";
 
 const navy =  '#0F3659';
 
@@ -29,10 +30,21 @@ function Dashboard() {
   const [endDate, setEndDate] = useState(new Date(new Date().getTime() + TIME_ZONE).toISOString().slice(0, -5));
   // 완료버튼 클릭 여부 
   const [isDateFilterClicked, setIsDateFilterClicked] = useState(false);
+  // 쿼리스트링 추출 
+  const searchParams = useLocation().search;
+  const pageOffset = new URLSearchParams(searchParams).get('pageOffset');
+  const queryStartDate = new URLSearchParams(searchParams).get('startDate');
+  const queryEndDate = new URLSearchParams(searchParams).get('endDate');
+  
+  console.log({ pageOffset, queryStartDate,queryEndDate});
+
 
   useEffect(()=>{
-    console.log('str', startDate, 'end', endDate);
-  },[startDate, endDate]);
+    if(queryStartDate && queryEndDate){
+      setStartDate(queryStartDate);
+      setEndDate(queryEndDate);
+    }
+  },[queryStartDate, queryEndDate]);
 
   return (
     <div style={{overflow: 'overlay', width:'100%', marginTop:'120px',height:'100%', paddingLeft:'30px', paddingRight:'20px'}}>
@@ -71,7 +83,7 @@ function Dashboard() {
         </div>
       </Box>
 
-      { value === "list" && <DataListComp startDate={startDate} endDate={endDate}/> }
+      { value === "list" && <DataListComp startDate={startDate} endDate={endDate} pageOffset={pageOffset}/> }
       { value === "stat" && <DataStat startDate={startDate} endDate={endDate}/>}
       { value === "reject" && <RejectedDataListComp startDate={startDate} endDate={endDate}/> }
     </div>

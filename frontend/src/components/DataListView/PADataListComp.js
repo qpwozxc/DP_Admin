@@ -65,9 +65,10 @@ const PADataListComp=({startDate, endDate})=>{
           <DataList
             meatList={meatList}
             pageProp={'pa'}
-            //setChecked = {setPredictItems}
             offset={currentPage-1}
             count={count}
+            startDate={startDate}
+            endDate={endDate}
           />
           )
           : (// 데이터가 로드되지 않은 경우 로딩중 반환

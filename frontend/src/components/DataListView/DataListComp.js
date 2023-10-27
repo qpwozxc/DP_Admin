@@ -6,7 +6,7 @@ import Pagination from "./Pagination";
 import getMeatList from "../../API/getMeatList";
 import { useMeatListFetch } from "../../API/getMeatListSWR";
 
-const DataListComp=({startDate, endDate})=>{
+const DataListComp=({startDate, endDate, pageOffset})=>{
   const [isLoaded, setIsLoaded] = useState(false);
   // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);
@@ -15,13 +15,25 @@ const DataListComp=({startDate, endDate})=>{
   const [totalData, setTotalData] = useState(0);
   // 현재 페이지 번호
   const [currentPage, setCurrentPage] = useState(1);
+  
+  /*useEffect(() => {
+    if (pageOffset){
+      setCurrentPage(pageOffset+1);
+      console.log('this page,', pageOffset);
+    } 
+  }, [pageOffset ]);
+  */
+  
+  // current page를 쿼리 스트링으로 캐치
   // setCurrentPage를 dataList로 전달 
   // 한페이지당 보여줄 개수 
   const count = 6; 
 
   //데이터 API로 부터 fetch
   const handleMeatListLoad = async () => {
-    const json = await getMeatList((currentPage - 1),count, startDate, endDate);  
+    console.log('get api from this page ', pageOffset, 'current page', currentPage, 'startDate', startDate, 'endDate', endDate);
+   
+    const json = await getMeatList(currentPage-1,count, startDate, endDate);  
     // 데이터 가공
     setTotalData(json["DB Total len"]);
     let data = [];
@@ -49,6 +61,8 @@ const DataListComp=({startDate, endDate})=>{
               pageProp={'list'}
               offset={currentPage-1}
               count={count}
+              startDate={startDate}
+              endDate={endDate}
             />
           )
           : (// 데이터가 로드되지 않은 경우 로딩중 반환
