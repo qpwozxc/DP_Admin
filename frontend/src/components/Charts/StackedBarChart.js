@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 // third-party
 import ReactApexChart from 'react-apexcharts';
 
-const apiIP = '3.38.52.82';
+const apiIP = '3.39.51.41';
 
 // chart options
 const columnChartOptions = {

@@ -10,7 +10,7 @@ import { fNumber } from './formatNumber';
 import useChart from './usePieChart';
 import { useEffect, useState } from "react";
 
-const apiIP = '3.38.52.82';
+const apiIP = '3.39.51.41';
 
 const CHART_HEIGHT = 300;
 const LEGEND_HEIGHT = 50;

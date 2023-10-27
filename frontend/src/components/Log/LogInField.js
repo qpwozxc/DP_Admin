@@ -70,7 +70,7 @@ const LogInField = () => {
       }
       const auth = getAuth();
       const response = await fetch(
-        `http://3.38.52.82//user/login?id=${loginEmail}`
+        `http://3.39.51.41//user/login?id=${loginEmail}`
       );
       const user = await response.json();
       try {

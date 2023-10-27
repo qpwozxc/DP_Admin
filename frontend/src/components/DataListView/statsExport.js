@@ -6,7 +6,7 @@ import ArrowUpOnSquareIcon from "@heroicons/react/24/solid/ArrowUpOnSquareIcon";
 import { Box, Button,SvgIcon,} from "@mui/material";
 
 const navy =  '#0F3659';
-const apiIP = '3.38.52.82';
+const apiIP = '3.39.51.41';
 
 function StatsExport(){
     

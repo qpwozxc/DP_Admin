@@ -34,7 +34,7 @@ import MeatImgsCard from "./cardComps/MeatImgsCard";
 
 import { computePeriod } from "./computePeriod";
 
-const apiIP = '3.38.52.82';
+const apiIP = '3.39.51.41';
 const navy =  '#0F3659';
 
 function DataView({page, currentUser ,dataProps}){
