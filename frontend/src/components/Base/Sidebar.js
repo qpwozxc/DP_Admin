@@ -132,7 +132,7 @@ function Sidebar() {
   const logout = async () => {
     try {
       console.log(userEmail);
-      fetch(`http://3.38.52.82/user/logout?id=${userEmail}`);
+      fetch(`http://3.39.51.41/user/logout?id=${userEmail}`);
       navigate("/");
     } catch (error) {
       console.log(error.message);

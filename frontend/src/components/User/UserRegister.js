@@ -80,7 +80,7 @@ function UserRegister({ handleClose }) {
           alarm: alarm,
           type: type,
         };
-        fetch(`http://3.38.52.82/user/register`, {
+        fetch(`http://3.39.51.41/user/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -107,7 +107,7 @@ function UserRegister({ handleClose }) {
     if (isEmailValid(userI)) {
       try {
         const response = await fetch(
-          `http://3.38.52.82/user/duplicate_check?id=${userI}`
+          `http://3.39.51.41/user/duplicate_check?id=${userI}`
         );
         if (response.ok) {
           emailInput.setCustomValidity("사용 가능한 이메일입니다.");

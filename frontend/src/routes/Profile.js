@@ -21,7 +21,7 @@ export default function Profile() {
   const updateUserInfo = async () => {
     setIsUpdating(true);
     try {
-      const response = await fetch("http://3.38.52.82/user/update", {
+      const response = await fetch("http://3.39.51.41/user/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

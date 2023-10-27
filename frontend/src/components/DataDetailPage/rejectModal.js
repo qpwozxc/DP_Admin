@@ -3,7 +3,7 @@ import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 import {FaRegTimesCircle} from "react-icons/fa";
 import StateChangedModal from "./stateChangedModal";
 import updateDataStatus from "../../API/updateDataStatus";
-const apiIP = '3.38.52.82';
+const apiIP = '3.39.51.41';
 const navy =  '#0F3659';
 
 export default function RejectModal({id, setConfirmVal, confirmVal}) {

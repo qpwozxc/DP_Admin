@@ -64,7 +64,7 @@ function UserList() {
 
       // If reauthentication is successful, proceed with the account deletion
       const response = await fetch(
-        `http://3.38.52.82/user/delete?id=${userId}`
+        `http://3.39.51.41/user/delete?id=${userId}`
       );
 
       if (response.ok) {
@@ -145,7 +145,7 @@ function UserList() {
     const fetchData = async () => {
       try {
         //유저 리스트 fetch
-        const usersListResponse = await fetch("http://3.38.52.82/user");
+        const usersListResponse = await fetch("http://3.39.51.41/user");
         const usersData = await usersListResponse.json();
         setUsersData(usersData);
 
@@ -155,7 +155,7 @@ function UserList() {
           const users = usersData[userType];
           for (const userId of users) {
             const userDataResponse = await fetch(
-              `http://3.38.52.82/user?userId=${userId}`
+              `http://3.39.51.41/user?userId=${userId}`
             );
             const userData = await userDataResponse.json();
             usersWithAdditionalData.push({ ...userData, id: userId });
@@ -203,7 +203,7 @@ function UserList() {
 
     try {
       // Send a POST request to update the user's information
-      const response = await fetch("http://3.38.52.82/user/update", {
+      const response = await fetch("http://3.39.51.41/user/update", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
