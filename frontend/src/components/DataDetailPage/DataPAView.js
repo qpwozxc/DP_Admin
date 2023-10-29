@@ -16,7 +16,8 @@ import ProcessedTablePA from "./tablesComps/processedTablePA";
 import PredictedProcessedTablePA from "./tablesComps/predictedProcessedTablePA";
 
 import { computePeriod } from "./computePeriod";
-const apiIP = '3.39.51.41';
+const apiIP = '3.38.52.82';
+
 const navy =  '#0F3659';
 
 
@@ -162,7 +163,7 @@ function DataPAView({ currentUser ,dataProps}){
                                 <div style={{width: "100%",padding:'10px 0px',borderRadius:'10px'}}>
                                     {
                                     previewImage
-                                    ?<img src={previewImage} style={{height:'190px',width:'100%',objectFit:'contain',}}/>
+                                    ?<img src={previewImage+'?n='+Math.random()} style={{height:'190px',width:'100%',objectFit:'contain',}}/>
                                     :<div style={{height:'190px',width:'100%',display:'flex',justifyContent:'center', alignItems:'center'}}>데이터 이미지가 존재하지 않습니다.</div>
                                     }
                                     
@@ -179,7 +180,7 @@ function DataPAView({ currentUser ,dataProps}){
                                 <div style={{width: "100%",display:'flex', justifyContent:'center',padding:'10px 0px'}}> 
                                     {dataXAIImg && loaded
                                     ?<div className="imgContainer" style={{borderRadius:'10px'}}>
-                                        <img src={dataXAIImg} style={{height:'190px',width:'100%',objectFit:'contain',marginRight:'30px'}}/>
+                                        <img src={dataXAIImg+'?n='+Math.random()} style={{height:'190px',width:'100%',objectFit:'contain',marginRight:'30px'}}/>
                                     </div>
                                     :<div style={{height:'190px',width:'100%',display:'flex',margin:'0px 20px',marginRight:'20px' ,justifyContent:'center', alignItems:'center'}}>
                                         <span style={{color:'#546e7a',  fontSize:'15px'}}>
@@ -190,7 +191,7 @@ function DataPAView({ currentUser ,dataProps}){
                                     }
                                     {gradeXAIImg && loaded
                                     ?<div className="imgContainer" style={{borderRadius:'10px'}}>
-                                        <img src={gradeXAIImg}  style={{height:'190px',width:'100%',objectFit:'contain',}}/>
+                                        <img src={gradeXAIImg+'?n='+Math.random()}  style={{height:'190px',width:'100%',objectFit:'contain',}}/>
                                     </div>
                                     :<div style={{height:'170px',width:'100%',display:'flex', justifyContent:'center', alignItems:'center',margin:'0px 20px',}}>
                                         <span style={{color:'#546e7a',  fontSize:'15px'}}>

@@ -66,11 +66,8 @@ const MeatImgsCard=(
                     const i = currentIdx - 1;
                     /*const response = await updateProcessedData(
                         processedInput[i],processed_data[i],processedMinute[i],  i, id, tempUserID, createdDate,elapsedHour);
-                    console.log(response);*/
-                      
-                    
-                    
-                    updateProcessedData(
+                    console.log(response);*/          
+                    await updateProcessedData(
                         processedInput[i],processed_data[i],processedMinute[i],  i, id, tempUserID, createdDate,elapsedHour)
                         .then((response) => {
                             console.log('처리육 이미지 수정 POST요청 성공:', response);
@@ -82,10 +79,7 @@ const MeatImgsCard=(
                             console.error('처리육 이미지 수정 POST 요청 오류:', error);
                         })
                     ;
-                }
-
-               
-                
+                }       
             };
             reader.readAsDataURL(newImgFile);
         }
@@ -164,7 +158,7 @@ const MeatImgsCard=(
                         <div style={{height:'350px',width:"100%",borderRadius:'10px'}}>
                             {// 실제 이미지 
                             imgArr[currentIdx]
-                            ?<img src={imgArr[currentIdx]}  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
+                            ?<img ng-src="data:image/jpeg;base64,{{image}}" src={imgArr[currentIdx]+"?time=" + new Date()}  alt={`Image ${currentIdx + 1}`} style={{height:'350px',width:"400px",objectFit:'contain'}}/>
                             :<div style={{height:'350px',width:"400px", display:'flex', justifyContent:'center', alignItems:'center'}}>이미지가 존재하지 않습니다.</div>
                             }
                         </div>

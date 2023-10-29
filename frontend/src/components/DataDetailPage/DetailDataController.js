@@ -5,38 +5,39 @@ import GetDetailMeatData from "../../API/getDetailMeatData";
 import dataProcessing from "./dataProcessing";
 import Spinner from "react-bootstrap/Spinner";
 
+import { useDetailMeatDataFetch } from "../../API/getDetailMeatDataSWR";
+
 //하나의 관리번호에 대한 고기 데이터를 API에서 GET해서 json 객체로 넘겨줌 
 const DataLoad = ({id, page, currentUser}) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [data, setData] = useState(null);
-  //관리번호
-  //const id  = useParams().id;
-  // API fetch
-  const handleDetailMeatDataLoad = async () => {
-    const json = await GetDetailMeatData(id);
-    if (json){
-      const datas = dataProcessing(json);
-      setData(datas);
-    }
-    setIsLoaded(true);
-  };
 
-  // API GET으로 데이터 가져오기 
-  useEffect(() => {
-    handleDetailMeatDataLoad();
-  }, []);
-  
+  const [detailData, setDetailData] = useState();
+  // API fetch
+  const { data, isLoading, isError } = useDetailMeatDataFetch(id) ;
+  console.log('meat detail:', data);
+
+  //데이터 가공 
+  useEffect(()=>{
+    if (data !== null && data !== undefined){
+      setDetailData(dataProcessing(data));
+    }
+  },[data]);
+
+  if (data === null) return null;
+  if (isLoading) return ( // 데이터가 로드되지 않은 경우 로딩중 반환 
+      <div>
+        <Spinner animation="border" />
+      </div>
+  );
+  if (isError) return null;//경고 컴포넌트
 
   return(
     <>
       {
-      isLoaded
-      ? //데이터가 로드된 경우 데이터 목록 반환
-      page === "예측"
-        ?<DataPAView currentUser={currentUser} dataProps={data}/>
-        :<DataView page={page} currentUser={currentUser} dataProps={data}/>
-      : // 데이터가 로드되지 않은 경우 로딩중 반환
-        <Spinner animation="border" />
+      detailData !== undefined 
+      && ( page === "예측"
+          ?<DataPAView currentUser={currentUser} dataProps={detailData}/>
+          :<DataView page={page} currentUser={currentUser} dataProps={detailData}/>
+      )
     }
     </>)
 

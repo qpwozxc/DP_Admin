@@ -4,7 +4,7 @@ import { useTheme } from '@mui/material/styles';
 // third-party
 import ReactApexChart from 'react-apexcharts';
 
-const apiIP = '3.39.51.41';
+const apiIP = '3.38.52.82';//'3.39.51.41';
 
 // chart options
 const columnChartOptions = {
@@ -132,7 +132,7 @@ const StackedBarChart = ({startDate,endDate}) => {
       const categCount = await(
         await fetch(`http://${apiIP}/meat/statistic?type=2&start=${startDate}&end=${endDate}`)
       ).json();
-
+        console.log(`http://${apiIP}/meat/statistic?type=2&start=${startDate}&end=${endDate}`)
       setCattleData(categCount['beef_counts_by_primal_value']);
       setPorkData(categCount['pork_counts_by_primal_value']);
     }

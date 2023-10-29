@@ -1,6 +1,5 @@
 import { useState, useEffect , useRef} from "react";
 import { useNavigate, useSearchParams } from 'react-router-dom'; 
-
 // react-bootstrap
 import Card from "react-bootstrap/Card";
 import Tab from "react-bootstrap/Tab";
@@ -10,10 +9,9 @@ import InputTransitionsModal from "./InputWarningComp";
 import AcceptModal from "./acceptModal";
 import RejectModal from "./rejectModal";
 // icons
-import {FaArrowLeft,FaArrowRight, FaUpload, FaRegCheckCircle, FaRegTimesCircle} from  "react-icons/fa";
+import {FaRegCheckCircle, FaRegTimesCircle} from  "react-icons/fa";
 // mui 
 import { IconButton,TextField, Autocomplete, } from '@mui/material';
-
 // import tables
 import RawTable from "./tablesComps/rawTable";
 import ProcessedTable from "./tablesComps/processedTable";
@@ -23,7 +21,7 @@ import ApiTable from "./tablesComps/apiTable";
 // import timezone
 import { TIME_ZONE } from "../../config";
 import Spinner from "react-bootstrap/Spinner";
-
+// import update APIs
 import updateHeatedData from "../../API/update/updateHeatedData";
 import updateProbexptData from "../../API/update/updateProbexptData";
 import updateProcessedData from "../../API/update/updateProcessedData";
@@ -31,10 +29,9 @@ import RestrictedModal from "./restrictedModal";
 // import card 
 import QRInfoCard from "./cardComps/QRInfoCard";
 import MeatImgsCard from "./cardComps/MeatImgsCard";
-
 import { computePeriod } from "./computePeriod";
 
-const apiIP = '3.39.51.41';
+const apiIP = '3.38.52.82';
 const navy =  '#0F3659';
 
 function DataView({page, currentUser ,dataProps}){

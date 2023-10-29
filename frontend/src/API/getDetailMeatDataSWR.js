@@ -6,15 +6,15 @@ const fetcher = (...args) =>
       case 200:
         return res.json();
       case 404:
-        throw new Error("No Meat Datas Found");
+        throw new Error("No Meat Data Found");
       default:
         return res.json();
     }
   });
 
-export const useMeatListFetch = (offset, count, startDate, endDate) => {
+export const useDetailMeatDataFetch = (id) => {
     const apiIP = '3.38.52.82';
-    const { data, error } = useSWR(`http://${apiIP}/meat/get?offset=${offset}&count=${count}&start=${startDate}&end=${endDate}&createdAt=true`, fetcher);
+    const { data, error } = useSWR(`http://${apiIP}/meat/get?id=${id}`, fetcher);
     
     return {
       data,

@@ -7,7 +7,7 @@ export default function BarGraph() {
 
   useEffect(() => {
     // Fetch data from the API
-    fetch("http://3.39.51.41/meat/statistic?type=0")
+    fetch("http://3.38.52.82/meat/statistic?type=0")
       .then((response) => response.json())
       .then((data) => {
         // Extract relevant data from the API response and transform it to match BarChart data structure

@@ -8,7 +8,7 @@ export default function Taste_FreshMeat({ startDate, endDate }) {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://3.39.51.41/meat/statistic?type=4&start=${startDate}&end=${endDate}`
+        `http://3.38.52.82/meat/statistic?type=4&start=${startDate}&end=${endDate}`
       );
 
       if (!response.ok) {

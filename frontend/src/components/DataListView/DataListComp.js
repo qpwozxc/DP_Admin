@@ -7,15 +7,16 @@ import getMeatList from "../../API/getMeatList";
 import { useMeatListFetch } from "../../API/getMeatListSWR";
 
 const DataListComp=({startDate, endDate, pageOffset})=>{
-  const [isLoaded, setIsLoaded] = useState(false);
+
   // 고기 데이터 목록
   const [meatList, setMeatList] = useState([]);
-
   // 데이터 전체 개수
   const [totalData, setTotalData] = useState(0);
   // 현재 페이지 번호
   const [currentPage, setCurrentPage] = useState(1);
-  
+    
+  // current page를 쿼리 스트링으로 캐치
+  // setCurrentPage를 dataList로 전달 
   /*useEffect(() => {
     if (pageOffset){
       setCurrentPage(pageOffset+1);
@@ -23,39 +24,51 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
     } 
   }, [pageOffset ]);
   */
-  
-  // current page를 쿼리 스트링으로 캐치
-  // setCurrentPage를 dataList로 전달 
+
   // 한페이지당 보여줄 개수 
   const count = 6; 
 
-  //데이터 API로 부터 fetch
-  const handleMeatListLoad = async () => {
-    console.log('get api from this page ', pageOffset, 'current page', currentPage, 'startDate', startDate, 'endDate', endDate);
-   
-    const json = await getMeatList(currentPage-1,count, startDate, endDate);  
-    // 데이터 가공
-    setTotalData(json["DB Total len"]);
-    let data = [];
-    json.id_list.map((m) => {
-      //setMeatList([...meatList, json.meat_dict[m]]);
-      data = [...data, json.meat_dict[m]];
-    });
-    setMeatList(data);
-    // 데이터 로드 성공
-    setIsLoaded(true);
+  // 데이터 가공
+  const processMeatDatas = (data) =>{
+      setTotalData(data["DB Total len"]);
+      let meatData = [];
+      data.id_list.map((m) => {
+        meatData = [...meatData, data.meat_dict[m]];
+      });
+      setMeatList(meatData);
   }
+  
+  // API fetch
+  const { data, isLoading, isError } = useMeatListFetch(currentPage-1, count, startDate, endDate) ;
+  console.log('meat list:', data);
 
+  // 데이터 가공 
   useEffect(() => {
-    handleMeatListLoad();  
-  }, [startDate, endDate, currentPage, ]);
+    if (data !== null && data !== undefined) {
+      processMeatDatas(data);
+    }
+  }, [data]);
 
+  if (data === null) return null;
+  if (isLoading) return ( // 데이터가 로드되지 않은 경우 로딩중 반환 
+      <div >
+        <div style={style.listContainer} >  
+                <Spinner animation="border" />
+        </div>
+        <Box sx={style.paginationBar}>
+          <Pagination totalDatas={totalData} count={count} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+        </Box>
+      </div>
+  );
+  if (isError) return null;//경고 컴포넌트
+ 
+  
   return (
     <div >
       <div style={style.listContainer} >
         {
-          isLoaded
-          ? (//데이터가 로드된 경우 데이터 목록 반환
+          meatList !== undefined
+          &&
             <DataList
               meatList={meatList}
               pageProp={'list'}
@@ -64,10 +77,6 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
               startDate={startDate}
               endDate={endDate}
             />
-          )
-          : (// 데이터가 로드되지 않은 경우 로딩중 반환
-              <Spinner animation="border" />
-          )
         }
       </div>
       <Box sx={style.paginationBar}>
@@ -75,6 +84,7 @@ const DataListComp=({startDate, endDate, pageOffset})=>{
       </Box>
     </div>
   );
+      
 }
 
 export default DataListComp;

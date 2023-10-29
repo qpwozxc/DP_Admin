@@ -7,7 +7,5 @@ export default async function getMeatList (offset, count, startDate, endDate) {
       )
     ).json();
    
-    console.log("fetch done!",`http://${apiIP}/meat/get?offset=${offset}&count=${count}&start=${startDate}&end=${endDate}&createdAt=true`, json);
-
     return json;
   };
