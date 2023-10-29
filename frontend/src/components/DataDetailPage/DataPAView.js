@@ -16,7 +16,7 @@ import ProcessedTablePA from "./tablesComps/processedTablePA";
 import PredictedProcessedTablePA from "./tablesComps/predictedProcessedTablePA";
 
 import { computePeriod } from "./computePeriod";
-const apiIP = '3.38.52.82';
+import { apiIP } from "../../config";
 
 const navy =  '#0F3659';
 

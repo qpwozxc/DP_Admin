@@ -3,7 +3,7 @@ import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 import {FaRegCheckCircle} from "react-icons/fa";
 import StateChangedModal from "./stateChangedModal";
 import updateDataStatus from "../../API/updateDataStatus";
-const apiIP = '3.38.52.82';
+
 const navy =  '#0F3659';
 
 export default function AcceptModal({id, setConfirmVal, confirmVal}) {
@@ -13,7 +13,7 @@ export default function AcceptModal({id, setConfirmVal, confirmVal}) {
 
     // 승인 api 호출
     const changeConfirmState=()=>{
-        updateDataStatus(apiIP,confirmVal, id, setStateChanged);
+        updateDataStatus(confirmVal, id, setStateChanged);
     };
 
     // 최종 변경 완료 팝업

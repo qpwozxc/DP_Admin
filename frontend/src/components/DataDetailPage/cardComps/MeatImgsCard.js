@@ -13,7 +13,6 @@ import uploadNewImgToFirebase from "../../../API/firebase/uploadNewImgToFirebase
 import { TIME_ZONE } from "../../../config";
 import { computePeriod } from "../computePeriod";
 
-const apiIP = '3.39.51.41';
 const navy =  '#0F3659';
 
 const MeatImgsCard=(

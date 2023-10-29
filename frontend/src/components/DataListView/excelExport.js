@@ -1,7 +1,6 @@
 import { useState } from "react";
 import * as XLSX from 'xlsx';
-
-const apiIP = '3.39.51.41';
+import { apiIP } from "../../config";
 
 const getDataListJSON = async () => {
     const json = await (

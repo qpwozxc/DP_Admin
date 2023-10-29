@@ -1,7 +1,6 @@
-//import useSWR from "swr"
+import { apiIP } from "../config";
 
 export default async function GetDetailMeatData (id){
-    const apiIP = '3.38.52.82';
     const json = await (
       await fetch(
         `http://${apiIP}/meat/get?id=${id}`

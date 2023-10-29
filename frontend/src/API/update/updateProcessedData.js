@@ -1,5 +1,5 @@
 import { computeCurrentDate } from "../../components/DataDetailPage/computePeriod";
-const apiIP = '3.38.52.82';
+import { apiIP } from "../../config";
 export default async function updateProcessedData(processedInput,processed_data,processedMinute, i, id, tempUserID, createdDate,elapsedHour ){
     
         const [yy,mm,dd] = computeCurrentDate();

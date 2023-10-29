@@ -1,6 +1,7 @@
 import ApexCharts from "react-apexcharts";
 import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
+import { apiIP } from "../../../../config";
 
 export default function Sens_HeatedMeat({ startDate, endDate }) {
   const [chartData, setChartData] = useState([]);
@@ -8,7 +9,7 @@ export default function Sens_HeatedMeat({ startDate, endDate }) {
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://3.38.52.82/meat/statistic?type=8&start=${startDate}&end=${endDate}`
+        `http://${apiIP}/meat/statistic?type=8&start=${startDate}&end=${endDate}`
       );
 
       if (!response.ok) {

@@ -1,4 +1,5 @@
-export default async function updateHeatedData(data,i, id, createdDate, tempUserID, elapsedHour, apiIP,){
+import { apiIP } from "../../config";
+export default async function updateHeatedData(data,i, id, createdDate, tempUserID, elapsedHour,){
     
     //request body에 보낼 데이터 가공
     let req = {

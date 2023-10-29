@@ -1,4 +1,5 @@
 import useSWR from "swr"
+import { apiIP } from "../config";
 
 const fetcher = (...args) =>
   fetch(...args).then((res) => {
@@ -13,7 +14,6 @@ const fetcher = (...args) =>
   });
 
 export const useMeatListFetch = (offset, count, startDate, endDate) => {
-    const apiIP = '3.38.52.82';
     const { data, error } = useSWR(`http://${apiIP}/meat/get?offset=${offset}&count=${count}&start=${startDate}&end=${endDate}&createdAt=true`, fetcher);
     
     return {

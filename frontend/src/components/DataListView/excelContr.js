@@ -5,8 +5,9 @@ import ArrowDownOnSquareIcon from "@heroicons/react/24/solid/ArrowDownOnSquareIc
 import ArrowUpOnSquareIcon from "@heroicons/react/24/solid/ArrowUpOnSquareIcon";
 import { Box, Button,SvgIcon,} from "@mui/material";
 import {getDataListJSON, downloadExcel} from "./excelExport";
+import { apiIP } from "../../config";
+
 const navy =  '#0F3659';
-const apiIP = '3.39.51.41';
 
 function ExcelController(){
     const fileRef = useRef(null);

@@ -1,3 +1,5 @@
+import { apiIP } from "../config";
+
 //데이터 예측 버튼 
 function HandlePredictClick(butcheryYmd, processed_data_seq_length, id){
     //로그인한 유저 정보
@@ -26,7 +28,7 @@ function HandlePredictClick(butcheryYmd, processed_data_seq_length, id){
 
         const res = JSON.stringify(req);
         try{
-            fetch(`http://3.38.52.82/predict`, {
+            fetch(`http://${apiIP}/predict`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

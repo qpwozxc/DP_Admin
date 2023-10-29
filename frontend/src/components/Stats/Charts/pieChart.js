@@ -1,13 +1,14 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { PieChart } from "@mui/x-charts/PieChart";
+import { apiIP } from "../../../config";
 
 export default function BasicPie() {
   const [chartData, setChartData] = useState([]);
 
   useEffect(() => {
     // Fetch data from the API
-    fetch("http://3.38.52.82/meat/statistic?type=0")
+    fetch(`http://${apiIP}/meat/statistic?type=0`)
       .then((response) => response.json())
       .then((data) => {
         // Extract relevant data from the API response and transform it to match PieChart data structure

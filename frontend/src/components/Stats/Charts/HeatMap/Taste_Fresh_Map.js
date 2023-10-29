@@ -1,6 +1,7 @@
 import ApexCharts from "react-apexcharts";
 import React, { useEffect, useState } from "react";
 import { da } from "date-fns/locale";
+import { apiIP } from "../../../../config";
 
 export default function Taste_Fresh_Map({ startDate, endDate }) {
   const [chartData, setChartData] = useState({});
@@ -9,7 +10,7 @@ export default function Taste_Fresh_Map({ startDate, endDate }) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://3.38.52.82/meat/statistic?type=4&start=${startDate}&end=${endDate}`
+          `http://${apiIP}/meat/statistic?type=4&start=${startDate}&end=${endDate}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

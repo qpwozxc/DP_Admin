@@ -3,7 +3,7 @@ import {Backdrop,Box, Modal, Fade,Button, Typography} from '@mui/material';
 import {FaRegTrashAlt} from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 import updateDataStatus from "../../API/updateDataStatus";
-const apiIP = '3.39.51.41';
+import { apiIP } from "../../config";
 const navy =  '#0F3659';
 
 export default function DelWarningModal({idArr, setIsDelClick}) {

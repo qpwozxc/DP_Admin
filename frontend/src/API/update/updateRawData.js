@@ -1,4 +1,4 @@
-const apiIP = '3.38.52.82';
+import { apiIP } from "../../config";
 
 export default async function updateRawData(raw_data, id, tempUserID, createdDate,elapsedHour, ){
 

@@ -1,13 +1,14 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
+import { apiIP } from "../../../config";
 
 export default function BarGraph() {
   const [chartData, setChartData] = useState([]); // Initialize with an empty array
 
   useEffect(() => {
     // Fetch data from the API
-    fetch("http://3.38.52.82/meat/statistic?type=0")
+    fetch(`http://${apiIP}/meat/statistic?type=0`)
       .then((response) => response.json())
       .then((data) => {
         // Extract relevant data from the API response and transform it to match BarChart data structure

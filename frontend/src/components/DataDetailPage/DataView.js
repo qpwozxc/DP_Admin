@@ -31,7 +31,6 @@ import QRInfoCard from "./cardComps/QRInfoCard";
 import MeatImgsCard from "./cardComps/MeatImgsCard";
 import { computePeriod } from "./computePeriod";
 
-const apiIP = '3.38.52.82';
 const navy =  '#0F3659';
 
 function DataView({page, currentUser ,dataProps}){
@@ -150,7 +149,7 @@ function DataView({page, currentUser ,dataProps}){
 
         // 1. 가열육 관능검사 데이터 수정 API POST
         for (let i =0; i < len ; i++){            
-            updateHeatedData(heatInput[i], i,id, createdDate, tempUserID, elapsedHour, apiIP)
+            updateHeatedData(heatInput[i], i,id, createdDate, tempUserID, elapsedHour)
                 .then((response) => {
                     console.log('가열육 수정 POST요청 성공:', response);
                 })
@@ -163,7 +162,7 @@ function DataView({page, currentUser ,dataProps}){
 
         // 2. 실험실 데이터 수정 API POST
         for (let i =0; i < len ; i++){
-            updateProbexptData(labInput[i], i,id, createdDate, tempUserID, elapsedHour, apiIP)
+            updateProbexptData(labInput[i], i,id, createdDate, tempUserID, elapsedHour)
                 .then((response) => {
                     console.log('실험실 수정 POST요청 성공:', response);
                 })

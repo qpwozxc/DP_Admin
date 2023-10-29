@@ -1,4 +1,6 @@
-export default async function updateDataStatus(apiIP,confirmVal, id, setStateChanged){
+import { apiIP } from "../config";
+
+export default async function updateDataStatus(confirmVal, id, setStateChanged){
 
     try{
         const response = await fetch(`http://${apiIP}/meat/${confirmVal}?id=${id}`);

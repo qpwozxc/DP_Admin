@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import * as d3 from 'd3';
 import 'leaflet/dist/leaflet.css';
-
-const apiIP = '3.38.52.82';//'3.39.51.41';
+import { apiIP } from '../../../config';
 
 const ChoroplethMap = ({data,startDate,endDate})=>{
     // 지역별 개수 API 데이터 받아오기\

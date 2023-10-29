@@ -24,6 +24,7 @@ import Layer_1 from "../../src_assets/Layer_1.png";
 import BackGround from "../../src_assets/BackGround.png";
 import { id } from "date-fns/locale";
 import styles from './LogInField.module.css';
+import { apiIP } from "../../config";
 
 const defaultTheme = createTheme();
 const LogInField = () => {
@@ -70,7 +71,7 @@ const LogInField = () => {
       }
       const auth = getAuth();
       const response = await fetch(
-        `http://3.39.51.41//user/login?id=${loginEmail}`
+        `http://${apiIP}/user/login?id=${loginEmail}`
       );
       const user = await response.json();
       try {
