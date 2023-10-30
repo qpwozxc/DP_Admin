@@ -1,29 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Form from 'react-bootstrap/Form';
 import { Button } from "react-bootstrap";
 import InputGroup from 'react-bootstrap/InputGroup';
-import { collection, getDocs, setDoc, doc } from "firebase/firestore";
-import { db, auth } from "../../firebase-config";
+import { auth } from "../../firebase-config";
 import {
   createUserWithEmailAndPassword,
   sendEmailVerification,
   sendPasswordResetEmail,
 } from "firebase/auth";
-import { Box } from "@mui/material";
 function UserRegister({ handleClose }) {
   const [userId, setuserId] = useState("");
+  const [name, setName] = useState("");
   const [createdAt, setCreatedAt] = useState(
     new Date().toISOString().slice(0, -5)
   ); // 초 정보를 제거한 현재 시간으로 초기화
-  const [updatedAt, setupdatedAt] = useState(
+  const [updatedAt] = useState(
     new Date().toISOString().slice(0, -5)
   );
-  const [loginAt, setloginAt] = useState(new Date().toISOString().slice(0, -5));
-  const [password, setpassword] = useState("");
+  const [loginAt] = useState(new Date().toISOString().slice(0, -5));
+  const [password] = useState("");
   const [company, setcompany] = useState("");
   const [jobTitle, setjobTitle] = useState("");
-  const [homeAddr, sethomeAddr] = useState("");
-  const [alarm, setalarm] = useState("");
+  const [homeAddr] = useState("");
+  const [alarm] = useState("");
   const [type, settype] = useState("");
 
   const [validated, setValidated] = useState(false);
@@ -32,10 +31,6 @@ function UserRegister({ handleClose }) {
     return emailRegex.test(userId);
   };
 
-  const isNameValid = (name) => {
-    const nameRegex = /^[가-힣]+$/;
-    return nameRegex.test(name);
-  };
 
   const generateTempPassword = () => {
     // Generate a random temporary password using characters from a predefined set
@@ -70,6 +65,7 @@ function UserRegister({ handleClose }) {
         setCreatedAt(new Date().toISOString().slice(0, -5));
         const toJson = {
           userId: userId,
+          name: name,
           createdAt: createdAt,
           updatedAt: updatedAt,
           loginAt: loginAt,
@@ -167,6 +163,18 @@ function UserRegister({ handleClose }) {
   )}
 </Form.Control.Feedback>
           </InputGroup>
+
+          <Form.Group className="mb-3">
+            <Form.Label column>*이름</Form.Label> 
+            <Form.Control
+              required
+              type="text"
+              placeholder="이름 입력"
+              onChange={(event) => {
+                setName(event.target.value);
+              }}
+            />
+          </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Select

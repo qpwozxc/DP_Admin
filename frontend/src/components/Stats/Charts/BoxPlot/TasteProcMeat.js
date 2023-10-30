@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { apiIP } from "../../../../config";
 
-export default function Sens_ProcMeat({ startDate, endDate }) {
+export default function TasteProcMeat({ startDate, endDate }) {
   const [chartData, setChartData] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://${apiIP}/meat/statistic?type=7&start=${startDate}&end=${endDate}`
+        `http://${apiIP}/meat/statistic?type=5&start=${startDate}&end=${endDate}`
       );
 
       if (!response.ok) {
@@ -50,39 +50,35 @@ export default function Sens_ProcMeat({ startDate, endDate }) {
   // Conditionally render the chart only when chartData is not empty
   return (
     <div>
-      {chartData && chartData.color && chartData.color.unique_values ? (
+      {chartData &&
+      chartData.bitterness &&
+      chartData.bitterness.unique_values ? (
         <ApexCharts
           series={[
             {
               type: "boxPlot",
               data: [
                 {
-                  x: "Color",
-                  y: calculateBoxPlotStatistics(chartData.color.unique_values),
-                },
-                {
-                  x: "Marbling",
+                  x: "bitterness",
                   y: calculateBoxPlotStatistics(
-                    chartData.marbling.unique_values
+                    chartData.bitterness.unique_values
                   ),
                 },
                 {
-                  x: "Overall",
+                  x: "richness",
                   y: calculateBoxPlotStatistics(
-                    chartData.overall.unique_values
+                    chartData.richness.unique_values
                   ),
                 },
                 {
-                  x: "SurfaceMoisture",
+                  x: "sourness",
                   y: calculateBoxPlotStatistics(
-                    chartData.surfaceMoisture.unique_values
+                    chartData.sourness.unique_values
                   ),
                 },
                 {
-                  x: "Texture",
-                  y: calculateBoxPlotStatistics(
-                    chartData.texture.unique_values
-                  ),
+                  x: "umami",
+                  y: calculateBoxPlotStatistics(chartData.umami.unique_values),
                 },
               ],
             },

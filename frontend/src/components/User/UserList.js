@@ -7,43 +7,24 @@ import Typography from "@mui/material/Typography";
 import { format } from "date-fns";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
-import MuiAlert from "@mui/material/Alert";
-import TableCell from "@mui/material/TableCell";
-import { db } from "../../firebase-config";
 import CustomSnackbar from "../Base/CustomSnackbar";
 import DeleteIcon from "@mui/icons-material/Delete";
-import {
-  collection,
-  getDocs,
-  getDoc,
-  addDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
 import InputBase from "@mui/material/InputBase";
-import Paper from "@mui/material/Paper";
 import Toolbar from "@mui/material/Toolbar";
-import Container from "@mui/material/Container";
-import { GridToolbarQuickFilter, DataGrid } from "@mui/x-data-grid";
+import {  DataGrid } from "@mui/x-data-grid";
 import IconButton from "@mui/material/IconButton";
 import CircularProgress from "@mui/material/CircularProgress";
 import SearchIcon from "@mui/icons-material/Search";
 import {
   getAuth,
-  deleteUser,
-  reauthenticateWithCredential,
-  EmailAuthProvider,
 } from "firebase/auth";
 import { Box } from "@mui/material";
 
 function UserList() {
   const [registerShow, setRegisterShow] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const [editShow, setEditShow] = useState(false);
-  const [selectedUser, setSelectedUser] = useState(null);
-  const [users, setUsers] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
-  const [usersData, setUsersData] = useState({});
+  const [ setUsersData] = useState({});
   const [searchedUsers, setSearchedUsers] = useState([]);
   const handleRegisterClose = () => {
     setRegisterShow(false);
@@ -171,7 +152,7 @@ function UserList() {
     };
 
     fetchData();
-  }, []);
+  });
 
   const handleSearch = (event) => {
     const keyword = event.target.value.toLowerCase();

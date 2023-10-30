@@ -2,7 +2,7 @@ import ApexCharts from "react-apexcharts";
 import React, { useEffect, useState } from "react";
 import { apiIP } from "../../../../config";
 
-export default function Taste_Time({ startDate, endDate }) {
+export default function TasteTime({ startDate, endDate }) {
   useEffect(() => {
     const fetchData = async () => {
       try {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { apiIP } from "../../../../config";
 
 
-export default function Sens_Fresh_Map({ startDate, endDate }) {
+export default function SensFreshMap({ startDate, endDate }) {
   const [chartData, setChartData] = useState({});
   const [prop, setProp] = useState([]);
 

@@ -1,7 +1,7 @@
 import React from "react";
 import ApexCharts from "react-apexcharts";
 
-export default function Taste_Fresh_Corr({ startDate, endDate }) {
+export default function TasteFreshCorr({ startDate, endDate }) {
   const data = {
     bitterness: {
       avg: 4.75,

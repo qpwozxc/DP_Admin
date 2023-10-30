@@ -1,35 +1,22 @@
 import { useState } from "react"
 import PropTypes from 'prop-types';
-import {Tabs, Tab, Box, Button,useTheme}from '@mui/material';
-import BarGraph from "./Charts/barGraph";
-import PieChart from "./Charts/pieChart";
-import AreaChart from "./Charts/BoxPlot/Sens_FreshMeat";
-import { IoBarChart, IoPieChart } from "react-icons/io5";
+import {Tabs, Tab, Box}from '@mui/material';
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { FaChartLine } from "react-icons/fa6";
-import ToggleButton from "@mui/material/ToggleButton";
-import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
-import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
-import { ScatterChart } from "@mui/x-charts/ScatterChart";
-import BasicScatter from "./Charts/ScatterChart";
-import BasicPie from "./Charts/pieChart";
-import FreshMeat_BoxPlot from "./Charts/BoxPlot/Sens_FreshMeat";
-import ProcMeat_BoxPlot from "./Charts/BoxPlot/Sens_ProcMeat";
-import HeatedMeat_BoxPlot from "./Charts/BoxPlot/Sens_HeatedMeat";
-import Sens_FreshMeat from "./Charts/BoxPlot/Sens_FreshMeat";
-import Sens_ProcMeat from "./Charts/BoxPlot/Sens_ProcMeat";
-import Sens_HeatedMeat from "./Charts/BoxPlot/Sens_HeatedMeat";
-import Taste_FreshMeat from "./Charts/BoxPlot/Taste_FreshMeat";
-import Taste_ProcMeat from "./Charts/BoxPlot/Taste_ProcMeat";
-import Sens_Fresh_Map from "./Charts/HeatMap/Sens_Fresh_Map";
-import Sens_Heated_Map from "./Charts/HeatMap/Sens_Heated_Map";
-import Taste_Fresh_Map from "./Charts/HeatMap/Taste_Fresh_Map";
-import Taste_Proc_Map from "./Charts/HeatMap/Taste_Proc_Map";
-import Taste_Time from "./Charts/Time/Taste_Time";
-import { useEffect, useRef } from "react";
-import Sens_Proc_Map from "./Charts/HeatMap/Sens_Proc_Map";
-import Taste_Fresh_Corr from "./Charts/Corr/Taste_Fresh_Corr";
+import { Select, MenuItem } from '@mui/material';
+import SensFreshMeat from "./Charts/BoxPlot/SensFreshMeat";
+import SensProcMeat from "./Charts/BoxPlot/SensProcMeat";
+import SensHeatedMeat from "./Charts/BoxPlot/SensHeatedMeat";
+import TasteFreshMeat from "./Charts/BoxPlot/TasteFreshMeat";
+import TasteProcMeat from "./Charts/BoxPlot/TasteProcMeat";
+import SensFreshMap from "./Charts/HeatMap/SensFreshMap";
+import SensHeatedMap from "./Charts/HeatMap/SensHeatedMap";
+import TasteFreshMap from "./Charts/HeatMap/TasteFreshMap";
+import TasteProcMap from "./Charts/HeatMap/TasteProcMap";
+import TasteTime from "./Charts/Time/TasteTime";
+import { useEffect } from "react";
+import SensProcMap from "./Charts/HeatMap/SensProcMap";
+import TasteFreshCorr from "./Charts/Corr/TasteFreshCorr";
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -62,9 +49,7 @@ function a11yProps(index) {
 
 export default function StatsTabs({ startDate, endDate }) {
   const [value, setValue] = useState(0);
-  const [slot, setSlot] = useState("week");
   useEffect(() => {console.log('stat tab'+startDate, '-', endDate)}, [startDate, endDate]);
-  const theme = useTheme();
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -148,30 +133,30 @@ const handleSecondChange = (event) => {
       {/* BoxPlot(통계) */}
       <CustomTabPanel value={value} index={0}>
         {alignment === "관능" && secondary === "원육" ? (
-          <Sens_FreshMeat startDate={startDate} endDate={endDate} />
+          <SensFreshMeat startDate={startDate} endDate={endDate} />
         ) : alignment === "관능" && secondary === "처리육" ? (
-          <Sens_ProcMeat startDate={startDate} endDate={endDate} />
+          <SensProcMeat startDate={startDate} endDate={endDate} />
         ) : alignment === "관능" && secondary === "가열육" ? (
-          <Sens_HeatedMeat startDate={startDate} endDate={endDate} />
+          <SensHeatedMeat startDate={startDate} endDate={endDate} />
         ) : alignment === "맛" && secondary === "원육" ? (
-          <Taste_FreshMeat startDate={startDate} endDate={endDate} />
+          <TasteFreshMeat startDate={startDate} endDate={endDate} />
         ) : alignment === "맛" && secondary === "처리육" ? (
-          <Taste_ProcMeat startDate={startDate} endDate={endDate} />
+          <TasteProcMeat startDate={startDate} endDate={endDate} />
         ) : null}
       </CustomTabPanel>
 
       {/* HeatMap(분포) */}
       <CustomTabPanel value={value} index={1}>
         {alignment === "관능" && secondary === "원육" ? (
-          <Sens_Fresh_Map startDate={startDate} endDate={endDate} />
+          <SensFreshMap startDate={startDate} endDate={endDate} />
         ) : alignment === "관능" && secondary === "처리육" ? (
-          <Sens_Proc_Map startDate={startDate} endDate={endDate} />
+          <SensProcMap startDate={startDate} endDate={endDate} />
         ) : alignment === "관능" && secondary === "가열육" ? (
-          <Sens_Heated_Map startDate={startDate} endDate={endDate} />
+          <SensHeatedMap startDate={startDate} endDate={endDate} />
         ) : alignment === "맛" && secondary === "원육" ? (
-          <Taste_Fresh_Map startDate={startDate} endDate={endDate} />
+          <TasteFreshMap startDate={startDate} endDate={endDate} />
         ) : alignment === "맛" && secondary === "처리육" ? (
-          <Taste_Proc_Map startDate={startDate} endDate={endDate} />
+          <TasteProcMap startDate={startDate} endDate={endDate} />
         ) : null}
       </CustomTabPanel>
 
@@ -189,11 +174,11 @@ const handleSecondChange = (event) => {
           <Taste_Proc_Map startDate={startDate} endDate={endDate} />
         ) : null} */}
 
-        <Taste_Fresh_Corr startDate={startDate} endDate={endDate} />
+        <TasteFreshCorr startDate={startDate} endDate={endDate} />
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={3}>
-        <Taste_Time startDate={startDate} endDate={endDate} />
+        <TasteTime startDate={startDate} endDate={endDate} />
       </CustomTabPanel>
     </Box>
   );

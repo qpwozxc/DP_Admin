@@ -2,7 +2,7 @@ import ApexCharts from "react-apexcharts";
 import React, { useEffect, useState } from "react";
 import { apiIP } from "../../../../config";
 
-export default function Taste_Proc_Map({ startDate, endDate }) {
+export default function TasteProcMap({ startDate, endDate }) {
   const [chartData, setChartData] = useState({});
   const [prop, setProp] = useState([]);
 

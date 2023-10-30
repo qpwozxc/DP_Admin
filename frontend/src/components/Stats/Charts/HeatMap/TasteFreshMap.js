@@ -1,9 +1,8 @@
 import ApexCharts from "react-apexcharts";
 import React, { useEffect, useState } from "react";
-import { da } from "date-fns/locale";
 import { apiIP } from "../../../../config";
 
-export default function Taste_Fresh_Map({ startDate, endDate }) {
+export default function TasteFreshMap({ startDate, endDate }) {
   const [chartData, setChartData] = useState({});
 
   useEffect(() => {

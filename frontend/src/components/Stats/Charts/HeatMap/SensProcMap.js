@@ -2,8 +2,7 @@ import ApexCharts from "react-apexcharts";
 import React, { useEffect, useState } from "react";
 import { apiIP } from "../../../../config";
 
-
-export default function Sens_Heated_Map({ startDate, endDate }) {
+export default function SensProcMap({ startDate, endDate }) {
   const [chartData, setChartData] = useState({});
   const [prop, setProp] = useState([]);
 
@@ -11,7 +10,7 @@ export default function Sens_Heated_Map({ startDate, endDate }) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://${apiIP}/meat/statistic?type=8&start=${startDate}&end=${endDate}`
+          `http://${apiIP}/meat/statistic?type=7&start=${startDate}&end=${endDate}`
         );
 
         if (!response.ok) {
@@ -61,7 +60,7 @@ export default function Sens_Heated_Map({ startDate, endDate }) {
       max: 10, // Adjust the max value as needed
     },
     title: {
-      text: "가열육 관능데이터 범위별 분포(빈도수)",
+      text: "처리육 관능데이터 범위별 분포(빈도수)",
     },
     grid: {
       padding: {

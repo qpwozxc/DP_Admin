@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { apiIP } from "../../../../config";
 
-export default function Taste_ProcMeat({ startDate, endDate }) {
-  const [chartData, setChartData] = useState([]);
+export default function TasteFreshMeat({ startDate, endDate }) {
+  const [chartData, setChartData] = useState([]); // Change initial state to null
 
   const fetchData = async () => {
     try {
       const response = await fetch(
-        `http://${apiIP}/meat/statistic?type=5&start=${startDate}&end=${endDate}`
+        `http://${apiIP}/meat/statistic?type=4&start=${startDate}&end=${endDate}`
       );
 
       if (!response.ok) {
@@ -18,7 +18,7 @@ export default function Taste_ProcMeat({ startDate, endDate }) {
       const data = await response.json();
       setChartData(data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching chartData:", error);
     }
   };
 
@@ -47,7 +47,7 @@ export default function Taste_ProcMeat({ startDate, endDate }) {
     },
   };
 
-  // Conditionally render the chart only when chartData is not empty
+  // Conditionally render the chart or CircularProgress based on chartData
   return (
     <div>
       {chartData &&

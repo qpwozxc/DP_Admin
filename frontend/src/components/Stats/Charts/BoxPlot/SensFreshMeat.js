@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import { apiIP } from "../../../../config";
 
-export default function Sens_FreshMeat({ startDate, endDate }) {
+export default function SensFreshMeat({ startDate, endDate }) {
   const [chartData, setChartData] = useState([]);
   const fetchData = async () => {
     try {
